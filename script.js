@@ -9,6 +9,8 @@ function isAdminReset() {
   return new URLSearchParams(window.location.search).get("admin") === "reset";
 }
 
+const LAUNCH_DAY = 20481;
+
 let characters = [];
 let dailyCharacter = null;
 let resultsHistory = [];
@@ -194,6 +196,11 @@ function submitGuess() {
   }
 }
 
+function getPuzzleNumber() {
+  return gameState.day - LAUNCH_DAY + 1;
+}
+
+
 /* ---------------- RENDER ---------------- */
 
 function renderGuessRow(guess) {
@@ -250,7 +257,7 @@ function toEmoji(r) {
 }
 
 function shareResults() {
-  let text = `Wordle38 #${gameState.day}\n\n`;
+let text = `Wordle38 #${getPuzzleNumber()}\n\n`;
   gameState.guesses.forEach(g => {
     text += g.results.map(toEmoji).join("") + "\n";
   });
@@ -317,6 +324,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
