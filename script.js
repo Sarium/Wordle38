@@ -24,14 +24,7 @@ let gameState = {
 function normalizePower(power) {
   return power
     .toLowerCase()
-    .replace(/\s+(laranja|roxo|original)$/i, "")
-    .trim();
-}
-
-function normalizePower(power) {
-  return power
-    .toLowerCase()
-    .replace(/\s+(do som|da memória)$/i, "")
+    .replace(/\s+(laranja|roxo|original|de pecado|do som| da memória)$/i, "")
     .trim();
 }
 
@@ -186,19 +179,22 @@ function submitGuess() {
   const nameResult =
   guessChar.name === dailyCharacter.name ? "match" : "nope";
   
-  const powersComparison = comparePowers(
-  guessChar.powers,
+
+
+  const powersResult = comparePowers(
+    guessChar.powers,
   dailyCharacter.powers
   );
 
-  const results = [
-    nameResult,
-    compareExact(guessChar.birthplace, dailyCharacter.birthplace),
-    compareExact(guessChar.firstAppearance, dailyCharacter.firstAppearance),
-    compareExact(guessChar.species, dailyCharacter.species),
-    comparePowers(guessChar.powers, dailyCharacter.powers)
-    powersComparison.result
-  ];
+  
+const results = [
+  nameResult,
+  compareExact(guessChar.birthplace, dailyCharacter.birthplace),
+  compareExact(guessChar.firstAppearance, dailyCharacter.firstAppearance),
+  compareExact(guessChar.species, dailyCharacter.species),
+  powersResult
+];
+
 
   gameState.guesses.push({
   name: guessChar.name,
@@ -209,7 +205,7 @@ function submitGuess() {
     powers: guessChar.powers
   },
   results,
-  powersInfo: powersComparison
+  powersInfo: powersResult
 });
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
@@ -275,6 +271,11 @@ function renderGuessRow(guess) {
     };
   }
 
+      const powersText =
+      guess.powersInfo &&
+      guess.powersInfo.result === "partial"
+      ? `${values.powers.join(", ")} (${guess.powersInfo.count}/${guess.powersInfo.total})`
+      : values.powers.join(", ");
 
   row.innerHTML = `
     <td class="${guess.results[0]}">
@@ -292,14 +293,8 @@ function renderGuessRow(guess) {
     <td class="${guess.results[3]}">
       ${values.species}
     </td>
-
-    const powersText =
-      guess.powersInfo &&
-      guess.powersInfo.result === "partial"
-      ? `${values.powers.join(", ")} (${guess.powersInfo.count}/${guess.powersInfo.total})`
-      : values.powers.join(", ");
   
-    <td class="${guess.results[3]}">
+    <td class="${guess.results[4]}">
       ${powersText}
     </td>
 
@@ -388,6 +383,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
