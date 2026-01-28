@@ -261,7 +261,7 @@ let text = `Wordle38 #${getPuzzleNumber()}\n\n`;
   gameState.guesses.forEach(g => {
     text += g.results.map(toEmoji).join("") + "\n";
   });
-  text += "\nJogue em: sarium.github.io/Wordle38";
+  text += "\nJogue em: https://sarium.github.io/Wordle38";
 
   navigator.clipboard.writeText(text);
   alert("Copiado para a área de transferência!");
@@ -324,6 +324,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
