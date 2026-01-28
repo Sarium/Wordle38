@@ -2,6 +2,10 @@ const TIMEZONE_OFFSET = -3; // Brasília (GMT-3)
 const MAX_GUESSES = 6;
 const STORAGE_KEY = "Wordle38-state";
 
+function isAdmin() {
+  return new URLSearchParams(window.location.search).get("admin") === "true";
+}
+
 let characters = [];
 let dailyCharacter = null;
 let resultsHistory = [];
@@ -54,6 +58,11 @@ function initGame() {
   setupUI();
   updateCountdown();
   setInterval(updateCountdown, 1000);
+  if (isAdmin()) {
+  console.log("🛠️ ADMIN — Daily Character:", dailyCharacter);
+}
+updateStatsUI();
+
 }
 
 /* ---------------- UI ---------------- */
@@ -164,6 +173,7 @@ function submitGuess() {
     gameState.completed = true;
     gameState.won = true;
     updateStreak(true);
+    updateStatsUI();
     endGame(true);
     return;
   }
@@ -172,6 +182,7 @@ function submitGuess() {
     gameState.completed = true;
     gameState.won = false;
     updateStreak(false);
+    updateStatsUI();
     endGame(false);
   }
 }
@@ -241,6 +252,17 @@ function updateStreak(won) {
   localStorage.setItem("Wordle38-stats", JSON.stringify(stats));
 }
 
+function updateStatsUI() {
+  const stats = JSON.parse(localStorage.getItem("Wordle38-stats")) || {
+    streak: 0,
+    maxStreak: 0
+  };
+
+  document.getElementById("streak").textContent = stats.streak;
+  document.getElementById("maxStreak").textContent = stats.maxStreak;
+}
+
+
 /* ---------------- COUNTDOWN ---------------- */
 
 function updateCountdown() {
@@ -271,4 +293,5 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
