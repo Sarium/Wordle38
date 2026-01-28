@@ -26,12 +26,55 @@ const characters = [
 const daySeed = Math.floor(Date.now() / 86400000);
 const dailyCharacter = characters[daySeed % characters.length];
 
-// 🔹 Populate dropdown
-const datalist = document.getElementById("characters");
-characters.forEach(char => {
-  const option = document.createElement("option");
-  option.value = char.name;
-  datalist.appendChild(option);
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("guessInput");
+  const button = document.getElementById("guessButton");
+  const suggestionsBox = document.getElementById("suggestions");
+
+  // 🔽 Autocomplete filtering
+  input.addEventListener("input", () => {
+    const value = input.value.toLowerCase();
+    suggestionsBox.innerHTML = "";
+
+    if (!value) return;
+
+    const matches = characters.filter(c =>
+      c.name.toLowerCase().includes(value)
+    );
+
+    matches.forEach(char => {
+      const div = document.createElement("div");
+      div.className = "suggestion";
+      div.textContent = char.name;
+
+      div.addEventListener("click", () => {
+        input.value = char.name;
+        suggestionsBox.innerHTML = "";
+        input.focus();
+      });
+
+      suggestionsBox.appendChild(div);
+    });
+  });
+
+  // ⌨️ Enter submits
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitGuess();
+      suggestionsBox.innerHTML = "";
+    }
+  });
+
+  // 🖱 Button submits
+  button.addEventListener("click", submitGuess);
+
+  // ❌ Click outside closes suggestions
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".autocomplete")) {
+      suggestionsBox.innerHTML = "";
+    }
+  });
 });
 
 // 🔹 Comparison helpers
