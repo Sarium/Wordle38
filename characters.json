@@ -1,422 +1,422 @@
 [
   {
-    name: "Lan",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Retornado", "Mensageiro", "Contrato", "Runas"]
+    "name": "Lan",
+    "birthplace": "Shizunda",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Retornado", "Mensageiro", "Contrato", "Runas"]
   },
   {
-    name: "Sethe",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Sexto Sentido", "Segundo Despertar", "Retornado", "Deus", "Conexão"]
+    "name": "Sethe",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Sexto Sentido", "Segundo Despertar", "Retornado", "Deus", "Conexão"]
   },
   {
-    name: "Selen",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Despertar", "Relíquia"]
-  },
-   {
-    name: "Abbadon",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
-  },
-   {
-    name: "Apolo",
-    birthplace: "Delphi",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Deus"]
+    "name": "Selen",
+    "birthplace": "Suol",
+    "firstAppearance": "Engenheiro dos Homens",
+    "species": "Humano",
+    "powers": ["Despertar", "Relíquia"]
   },
   {
-    name: "Argent",
-    birthplace: "Cetate",
-    firstAppearance: "Açougueiro Divino",
-    species: "Humano",
-    powers: ["Despertar Roxo", "Olho de Alma", "Retornado"]
+    "name": "Abbadon",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Ártemis",
-    birthplace: "Delphi",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Deus"]
+    "name": "Apolo",
+    "birthplace": "Delphi",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Deus"]
   },
   {
-    name: "Asmodeus",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Argent",
+    "birthplace": "Cetate",
+    "firstAppearance": "Açougueiro Divino",
+    "species": "Humano",
+    "powers": ["Despertar Roxo", "Olho de Alma", "Retornado"]
   },
   {
-    name: "Atrax",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar Original", "Deus"]
+    "name": "Ártemis",
+    "birthplace": "Delphi",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Deus"]
   },
   {
-    name: "Aurelio",
-    birthplace: "?",
-    firstAppearance: "Mensageiros",
-    species: "Humano",
-    powers: ["Despertar", "Segundo Despertar"]
+    "name": "Asmodeus",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Bai-Rom",
-    birthplace: "Tenochtitlán",
-    firstAppearance: "Mensageiros",
-    species: "Humano",
-    powers: ["Despertar"]
+    "name": "Atrax",
+    "birthplace": "Shizunda",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Original", "Deus"]
   },
   {
-    name: "Beelzebub",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Aurelio",
+    "birthplace": "?",
+    "firstAppearance": "Mensageiros",
+    "species": "Humano",
+    "powers": ["Despertar", "Segundo Despertar"]
   },
   {
-    name: "Belphegor",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Bai-Rom",
+    "birthplace": "Tenochtitlán",
+    "firstAppearance": "Mensageiros",
+    "species": "Humano",
+    "powers": ["Despertar"]
   },
   {
-    name: "Bjorn",
-    birthplace: "Folkvangr",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Beelzebub",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Bull",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Belphegor",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Byron",
-    birthplace: "Tenochtitlán",
-    firstAppearance: "Mensageiros",
-    species: "Humano",
-    powers: ["Despertar"]
+    "name": "Bjorn",
+    "birthplace": "Folkvangr",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Caça",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar de Pecado", "Deus"]
+    "name": "Bull",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Cernunnos",
-    birthplace: "Varonia",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Segundo Despertar", "Deus"]
+    "name": "Byron",
+    "birthplace": "Tenochtitlán",
+    "firstAppearance": "Mensageiros",
+    "species": "Humano",
+    "powers": ["Despertar"]
   },
   {
-    name: "Ciodaru",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Relíquia",
-    powers: ["Relíquia"]
+    "name": "Caça",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar de Pecado", "Deus"]
   },
   {
-    name: "Colapso",
-    birthplace: "Forunia",
-    firstAppearance: "Mensageiros",
-    species: "Humano",
-    powers: ["Despertar Roxo", "Contrato"]
+    "name": "Cernunnos",
+    "birthplace": "Varonia",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Segundo Despertar", "Deus"]
   },
   {
-    name: "Esmeralda",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Retornado", "Conexão"]
+    "name": "Ciodaru",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Relíquia",
+    "powers": ["Relíquia"]
   },
   {
-    name: "Farin",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Sexto Sentido"]
+    "name": "Colapso",
+    "birthplace": "Forunia",
+    "firstAppearance": "Mensageiros",
+    "species": "Humano",
+    "powers": ["Despertar Roxo", "Contrato"]
   },
   {
-    name: "Fern",
-    birthplace: "Primeira Camada",
-    firstAppearance: "Mensageiros",
-    species: "Diabo",
-    powers: ["Contrato",]
+    "name": "Esmeralda",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Retornado", "Conexão"]
   },
   {
-    name: "Gaol",
-    birthplace: "Cetate",
-    firstAppearance: "Pastor das Almas",
-    species: "Humano",
-    powers: ["Despertar", "Conexão"]
+    "name": "Farin",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Sexto Sentido"]
   },
   {
-    name: "Geo",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Visão do Futuro", "Controle de Energia", "Retornado"]
+    "name": "Fern",
+    "birthplace": "Primeira Camada",
+    "firstAppearance": "Mensageiros",
+    "species": "Diabo",
+    "powers": ["Contrato"]
   },
   {
-    name: "He'to",
-    birthplace: "Tenochtitlán",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar"]
+    "name": "Gaol",
+    "birthplace": "Cetate",
+    "firstAppearance": "Pastor das Almas",
+    "species": "Humano",
+    "powers": ["Despertar", "Conexão"]
   },
   {
-    name: "Hit",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar Laranja",]
+    "name": "Geo",
+    "birthplace": "Suol",
+    "firstAppearance": "Engenheiro dos Homens",
+    "species": "Humano",
+    "powers": ["Visão do Futuro", "Controle de Energia", "Retornado"]
   },
   {
-    name: "Holy",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Despertar", "Relíquia"]
+    "name": "He'to",
+    "birthplace": "Tenochtitlán",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar"]
   },
   {
-    name: "Horn",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Hit",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Laranja"]
   },
   {
-    name: "Hórus",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Holy",
+    "birthplace": "Suol",
+    "firstAppearance": "Engenheiro dos Homens",
+    "species": "Humano",
+    "powers": ["Despertar", "Relíquia"]
   },
   {
-    name: "Jay",
-    birthplace: "Cetate",
-    firstAppearance: "Açougueiro Divino",
-    species: "Híbrido",
-    powers: ["Retornado", "Espírito", "Conexão"]
+    "name": "Horn",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Jó",
-    birthplace: "Nenhum",
-    firstAppearance: "Deus das Rosas",
-    species: "Construto Marcado",
-    powers: ["Conexão"]
+    "name": "Hórus",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Jorb",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nnehum"]
+    "name": "Jay",
+    "birthplace": "Cetate",
+    "firstAppearance": "Açougueiro Divino",
+    "species": "Híbrido",
+    "powers": ["Retornado", "Espírito", "Conexão"]
   },
   {
-    name: "Juiz",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar Roxo", "Retornado"]
+    "name": "Jó",
+    "birthplace": "Nenhum",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Construto Marcado",
+    "powers": ["Conexão"]
   },
   {
-    name: "Liche",
-    birthplace: "Varonia",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Depertar Original", "Retornado", "Mensageiro", "Conexão"]
+    "name": "Jorb",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Linear",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Juiz",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Roxo", "Retornado"]
   },
   {
-    name: "Logi",
-    birthplace: "Estação Vida",
-    firstAppearance: "Deus das Rosas",
-    species: "Dragão",
-    powers: ["Herança do Som"]
+    "name": "Liche",
+    "birthplace": "Varonia",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Original", "Retornado", "Mensageiro", "Conexão"]
   },
   {
-    name: "Loki",
-    birthplace: "Caverna",
-    firstAppearance: "Deus das Rosas",
-    species: "Relíquario",
-    powers: ["Relíquario"]
+    "name": "Linear",
+    "birthplace": "Shizunda",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Lúcifer",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Logi",
+    "birthplace": "Estação Vida",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Dragão",
+    "powers": ["Herança do Som"]
   },
   {
-    name: "Lyn",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Vampiro", "Relíquia"]
+    "name": "Loki",
+    "birthplace": "Caverna",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Relíquario",
+    "powers": ["Relíquario"]
   },
   {
-    name: "Maddy",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Lúcifer",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Malícia",
-    birthplace: "Lysande",
-    firstAppearance: "Prepotência",
-    species: "Construto Conectado",
-    powers: ["Despertar", "Conexão"]
+    "name": "Lyn",
+    "birthplace": "Suol",
+    "firstAppearance": "Engenheiro dos Homens",
+    "species": "Humano",
+    "powers": ["Vampiro", "Relíquia"]
   },
   {
-    name: "Mammon",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Maddy",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Minos",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Relíquia"]
+    "name": "Malícia",
+    "birthplace": "Lysande",
+    "firstAppearance": "Prepotência",
+    "species": "Construto Conectado",
+    "powers": ["Despertar", "Conexão"]
   },
   {
-    name: "Muni",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Conexão"]
+    "name": "Mammon",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Nari",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Híbrido",
-    powers: ["Retornado", "Espírito", "Conexão"]
+    "name": "Minos",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Relíquia"]
   },
   {
-    name: "Nidhoggr",
-    birthplace: "Estação Vida",
-    firstAppearance: "Deus das Rosas",
-    species: "Dragão",
-    powers: ["Herança da Memória"]
+    "name": "Muni",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Conexão"]
   },
   {
-    name: "Odin",
-    birthplace: "Caverna",
-    firstAppearance: "Nenhuma (Por Enquanto)",
-    species: "Relíquario",
-    powers: ["Relíquario"]
+    "name": "Nari",
+    "birthplace": "Shizunda",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Híbrido",
+    "powers": ["Retornado", "Espírito", "Conexão"]
   },
   {
-    name: "Onyx",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Despertar", "Sexto Sentido", "Visão do Futuro", "Runas"]
+    "name": "Nidhoggr",
+    "birthplace": "Estação Vida",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Dragão",
+    "powers": ["Herança da Memória"]
   },
   {
-    name: "Relia",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Nenhum"]
+    "name": "Odin",
+    "birthplace": "Caverna",
+    "firstAppearance": "Nenhuma (Por Enquanto)",
+    "species": "Relíquario",
+    "powers": ["Relíquario"]
   },
   {
-    name: "Riot",
-    birthplace: "Primeira Camada",
-    firstAppearance: "Mensageiros",
-    species: "Diabo",
-    powers: ["Contrato"]
+    "name": "Onyx",
+    "birthplace": "Suol",
+    "firstAppearance": "Engenheiro dos Homens",
+    "species": "Humano",
+    "powers": ["Despertar", "Sexto Sentido", "Visão do Futuro", "Runas"]
   },
   {
-    name: "Rom",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar"]
+    "name": "Relia",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Nenhum"]
   },
   {
-    name: "Ryan",
-    birthplace: "Torre do Geo",
-    firstAppearance: "Açougueiro Divino",
-    species: "Humano",
-    powers: ["Bestialização", "Conexão"]
+    "name": "Riot",
+    "birthplace": "Primeira Camada",
+    "firstAppearance": "Mensageiros",
+    "species": "Diabo",
+    "powers": ["Contrato"]
   },
   {
-    name: "Satanás",
-    birthplace: "Ilha dos Pecados",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano de Pecado",
-    powers: ["Despertar de Pecado"]
+    "name": "Rom",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar"]
   },
   {
-    name: "Susanoo",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Conexão", "Deus"]
+    "name": "Ryan",
+    "birthplace": "Torre do Geo",
+    "firstAppearance": "Açougueiro Divino",
+    "species": "Humano",
+    "powers": ["Bestialização", "Conexão"]
   },
   {
-    name: "Tamur",
-    birthplace: "Sidon",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar Original", "Retornado", "Mensageiro"]
+    "name": "Satanás",
+    "birthplace": "Ilha dos Pecados",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano de Pecado",
+    "powers": ["Despertar de Pecado"]
   },
   {
-    name: "Tarso",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar Original", "Retornado", "Mensageiro", "Conexão"]
+    "name": "Susanoo",
+    "birthplace": "Shizunda",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar", "Conexão", "Deus"]
   },
   {
-    name: "Thor",
-    birthplace: "Folkvangr",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar",]
+    "name": "Tamur",
+    "birthplace": "Sidon",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Original", "Retornado", "Mensageiro"]
   },
   {
-    name: "Vivian",
-    birthplace: "Terra",
-    firstAppearance: "Pastor das Almas",
-    species: "Humano",
-    powers: ["Espírito", "Retornado", "Conexão"]
+    "name": "Tarso",
+    "birthplace": "Cetate",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar Original", "Retornado", "Mensageiro", "Conexão"]
   },
   {
-    name: "Ymer",
-    birthplace: "Beirada",
-    firstAppearance: "Deus das Rosas",
-    species: "Híbrido",
-    powers: ["Despertar", "Contrato"]
+    "name": "Thor",
+    "birthplace": "Folkvangr",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Humano",
+    "powers": ["Despertar"]
+  },
+  {
+    "name": "Vivian",
+    "birthplace": "Terra",
+    "firstAppearance": "Pastor das Almas",
+    "species": "Humano",
+    "powers": ["Espírito", "Retornado", "Conexão"]
+  },
+  {
+    "name": "Ymer",
+    "birthplace": "Beirada",
+    "firstAppearance": "Deus das Rosas",
+    "species": "Híbrido",
+    "powers": ["Despertar", "Contrato"]
   }
 ]
