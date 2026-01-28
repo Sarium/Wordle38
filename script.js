@@ -98,6 +98,10 @@ function setupUI() {
   document
     .getElementById("shareButton")
     .addEventListener("click", shareResults);
+  
+  gameState.guesses.forEach(g => renderGuessRow(g));
+  updateGuessCounter();
+
 }
 
 /* ---------------- GAME LOGIC ---------------- */
@@ -137,8 +141,20 @@ function submitGuess() {
     comparePowers(guessChar.powers, dailyCharacter.powers)
   ];
 
-  gameState.guesses.push({ name: guessChar.name, results });
+  gameState.guesses.push({
+  name: guessChar.name,
+  values: {
+    birthplace: guessChar.birthplace,
+    firstAppearance: guessChar.firstAppearance,
+    species: guessChar.species,
+    powers: guessChar.powers
+  },
+  results
+});
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+
+  updateGuessCounter();
 
   renderGuessRow({ name: guessChar.name, results });
 
@@ -164,12 +180,35 @@ function submitGuess() {
 
 function renderGuessRow(guess) {
   const row = document.createElement("tr");
+
   row.innerHTML = `
     <td>${guess.name}</td>
-    ${guess.results.map(r => `<td class="${r}"></td>`).join("")}
+
+    <td class="${guess.results[0]}">
+      ${guess.values.birthplace}
+    </td>
+
+    <td class="${guess.results[1]}">
+      ${guess.values.firstAppearance}
+    </td>
+
+    <td class="${guess.results[2]}">
+      ${guess.values.species}
+    </td>
+
+    <td class="${guess.results[3]}">
+      ${guess.values.powers.join(", ")}
+    </td>
   `;
+
   document.querySelector("#results tbody").appendChild(row);
 }
+
+function updateGuessCounter() {
+  const counter = document.getElementById("guessCounter");
+  counter.textContent = `Guesses: ${gameState.guesses.length} / ${MAX_GUESSES}`;
+}
+
 
 /* ---------------- SHARE ---------------- */
 
@@ -232,3 +271,4 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
