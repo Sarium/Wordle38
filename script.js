@@ -192,23 +192,38 @@ function submitGuess() {
 function renderGuessRow(guess) {
   const row = document.createElement("tr");
 
+  // 🔄 Backward compatibility
+  let values = guess.values;
+
+  if (!values) {
+    const char = characters.find(c => c.name === guess.name);
+    if (!char) return;
+
+    values = {
+      birthplace: char.birthplace,
+      firstAppearance: char.firstAppearance,
+      species: char.species,
+      powers: char.powers
+    };
+  }
+
   row.innerHTML = `
     <td>${guess.name}</td>
 
     <td class="${guess.results[0]}">
-      ${guess.values.birthplace}
+      ${values.birthplace}
     </td>
 
     <td class="${guess.results[1]}">
-      ${guess.values.firstAppearance}
+      ${values.firstAppearance}
     </td>
 
     <td class="${guess.results[2]}">
-      ${guess.values.species}
+      ${values.species}
     </td>
 
     <td class="${guess.results[3]}">
-      ${guess.values.powers.join(", ")}
+      ${values.powers.join(", ")}
     </td>
   `;
 
@@ -293,5 +308,6 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
