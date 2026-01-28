@@ -21,6 +21,20 @@ let gameState = {
   won: false
 };
 
+function normalizePower(power) {
+  return power
+    .toLowerCase()
+    .replace(/\s+(laranja|roxo|original)$/i, "")
+    .trim();
+}
+
+function normalizePower(power) {
+  return power
+    .toLowerCase()
+    .replace(/\s+(do som|da memória)$/i, "")
+    .trim();
+}
+
 /* ---------------- TIME / DAY ---------------- */
 
 function getBrasiliaDayNumber() {
@@ -129,10 +143,28 @@ function compareExact(a, b) {
 }
 
 
-function comparePowers(a, b) {
-  const overlap = a.filter(p => b.includes(p));
-  if (overlap.length === a.length && a.length === b.length) return "match";
-  if (overlap.length > 0) return "partial";
+function comparePowers(guess, target) {
+  // 🟩 EXACT match (string-level, order independent)
+  const exactMatch =
+    guess.length === target.length &&
+    guess.every(p => target.includes(p));
+
+  if (exactMatch) {
+    return "match";
+  }
+
+  // 🟨 FAMILY-based partial match
+  const normalizedGuess = guess.map(normalizePower);
+  const normalizedTarget = target.map(normalizePower);
+
+  const familyOverlap = normalizedGuess.some(p =>
+    normalizedTarget.includes(p)
+  );
+
+  if (familyOverlap) {
+    return "partial";
+  }
+
   return "nope";
 }
 
@@ -153,6 +185,11 @@ function submitGuess() {
 
   const nameResult =
   guessChar.name === dailyCharacter.name ? "match" : "nope";
+  
+  const powersComparison = comparePowers(
+  guessChar.powers,
+  dailyCharacter.powers
+  );
 
   const results = [
     nameResult,
@@ -160,6 +197,7 @@ function submitGuess() {
     compareExact(guessChar.firstAppearance, dailyCharacter.firstAppearance),
     compareExact(guessChar.species, dailyCharacter.species),
     comparePowers(guessChar.powers, dailyCharacter.powers)
+    powersComparison.result
   ];
 
   gameState.guesses.push({
@@ -170,7 +208,8 @@ function submitGuess() {
     species: guessChar.species,
     powers: guessChar.powers
   },
-  results
+  results,
+  powersInfo: powersComparison
 });
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
@@ -222,6 +261,21 @@ function renderGuessRow(guess) {
     };
   }
 
+  let powersInfo = guess.powersInfo;
+
+  if (!powersInfo) {
+    const overlap = values.powers.filter(p =>
+      dailyCharacter.powers.includes(p)
+    );
+
+    powersInfo = {
+      result: guess.results[3],
+      count: overlap.length,
+      total: dailyCharacter.powers.length
+    };
+  }
+
+
   row.innerHTML = `
     <td class="${guess.results[0]}">
       ${guess.name}
@@ -239,10 +293,16 @@ function renderGuessRow(guess) {
       ${values.species}
     </td>
 
-    <td class="${guess.results[4]}">
-      ${values.powers.join(", ")}
+    const powersText =
+      guess.powersInfo &&
+      guess.powersInfo.result === "partial"
+      ? `${values.powers.join(", ")} (${guess.powersInfo.count}/${guess.powersInfo.total})`
+      : values.powers.join(", ");
+  
+    <td class="${guess.results[3]}">
+      ${powersText}
     </td>
-  `;
+
 
   document.querySelector("#results tbody").appendChild(row);
 }
@@ -328,6 +388,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
