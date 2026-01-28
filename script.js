@@ -5,6 +5,9 @@ const STORAGE_KEY = "Wordle38-state";
 function isAdmin() {
   return new URLSearchParams(window.location.search).get("admin") === "true";
 }
+function isAdminReset() {
+  return new URLSearchParams(window.location.search).get("admin") === "reset";
+}
 
 let characters = [];
 let dailyCharacter = null;
@@ -35,6 +38,9 @@ fetch("characters.json")
   });
 
 function initGame() {
+  if (isAdminReset()) {
+  localStorage.removeItem(STORAGE_KEY);
+}
   const today = getBrasiliaDayNumber();
   dailyCharacter = characters[today % characters.length];
 
@@ -311,6 +317,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
