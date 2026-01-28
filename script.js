@@ -368,7 +368,7 @@ function updateCountdown() {
   const s = Math.floor((diff % 60000) / 1000);
 
   document.getElementById("countdown").textContent =
-    `Next character in ${h}h ${m}m ${s}s`;
+    `Próximo Personagem em ${h}h ${m}m ${s}s`;
 }
 
 /* ---------------- END ---------------- */
@@ -380,9 +380,10 @@ function endGame(won) {
   document.getElementById("shareButton").style.display = "inline-block";
 
   if (!won) {
-    alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
+    alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
