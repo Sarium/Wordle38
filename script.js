@@ -1,28 +1,13 @@
-// 🔹 CHARACTER DATABASE
-const characters = [
-  {
-    name: "Lan",
-    birthplace: "Shizunda",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Retornado", "Mensageiro", "Contrato", "Runas"]
-  },
-  {
-    name: "Sethe",
-    birthplace: "Cetate",
-    firstAppearance: "Deus das Rosas",
-    species: "Humano",
-    powers: ["Despertar", "Sexto Sentido", "Segundo Despertar", "Retornado", "Deus", "Conexão"]
-  },
-  {
-    name: "Selen",
-    birthplace: "Suol",
-    firstAppearance: "Engenheiro dos Homens",
-    species: "Humano",
-    powers: ["Despertar", "Relíquia"]
-  }
-];
+let characters = [];
 
+fetch("characters.json")
+  .then(res => res.json())
+  .then(data => {
+    characters = data;
+    initGame();
+  });
+
+function initGame() {
 const daySeed = Math.floor(Date.now() / 86400000);
 const dailyCharacter = characters[daySeed % characters.length];
 
@@ -146,5 +131,6 @@ function submitGuess() {
   if (guessChar.name === dailyCharacter.name) {
     alert("Você achou o personagem!");
   }
+}
 }
 
