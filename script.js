@@ -84,6 +84,15 @@ function compareExact(guess, target) {
   return "nope";
 }
 
+function comparePowers(guess, target) {
+  const overlap = guess.filter(p => target.includes(p));
+  if (overlap.length === target.length && guess.length === target.length) {
+    return "match";
+  }
+  if (overlap.length > 0) return "partial";
+  return "nope";
+}
+
 function submitGuess() {
   const input = document.getElementById("guessInput");
   const guessName = input.value.trim();
@@ -138,3 +147,4 @@ function submitGuess() {
     alert("Você achou o personagem!");
   }
 }
+
