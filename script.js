@@ -125,10 +125,9 @@ function setupUI() {
 /* ---------------- GAME LOGIC ---------------- */
 
 function compareExact(a, b) {
-  if (a === b) return "match";
-  if (a && b) return "partial";
-  return "nope";
+  return a === b ? "match" : "nope";
 }
+
 
 function comparePowers(a, b) {
   const overlap = a.filter(p => b.includes(p));
@@ -152,7 +151,11 @@ function submitGuess() {
 
   if (!guessChar) return;
 
+  const nameResult =
+  guessChar.name === dailyCharacter.name ? "match" : "nope";
+
   const results = [
+    nameResult,
     compareExact(guessChar.birthplace, dailyCharacter.birthplace),
     compareExact(guessChar.firstAppearance, dailyCharacter.firstAppearance),
     compareExact(guessChar.species, dailyCharacter.species),
@@ -206,13 +209,11 @@ function getPuzzleNumber() {
 function renderGuessRow(guess) {
   const row = document.createElement("tr");
 
-  // 🔄 Backward compatibility
+  // backward compatibility
   let values = guess.values;
-
   if (!values) {
     const char = characters.find(c => c.name === guess.name);
     if (!char) return;
-
     values = {
       birthplace: char.birthplace,
       firstAppearance: char.firstAppearance,
@@ -222,27 +223,30 @@ function renderGuessRow(guess) {
   }
 
   row.innerHTML = `
-    <td>${guess.name}</td>
-
     <td class="${guess.results[0]}">
-      ${values.birthplace}
+      ${guess.name}
     </td>
 
     <td class="${guess.results[1]}">
-      ${values.firstAppearance}
+      ${values.birthplace}
     </td>
 
     <td class="${guess.results[2]}">
-      ${values.species}
+      ${values.firstAppearance}
     </td>
 
     <td class="${guess.results[3]}">
+      ${values.species}
+    </td>
+
+    <td class="${guess.results[4]}">
       ${values.powers.join(", ")}
     </td>
   `;
 
   document.querySelector("#results tbody").appendChild(row);
 }
+
 
 function updateGuessCounter() {
   const counter = document.getElementById("guessCounter");
@@ -324,6 +328,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
