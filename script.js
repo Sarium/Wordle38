@@ -104,9 +104,10 @@ function setupUI() {
     }
   });
 
-  document
-    .getElementById("shareButton")
-    .addEventListener("click", shareResults);
+  const shareBtn = document.getElementById("shareButton");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", shareResults);
+  }
   
   gameState.guesses.forEach(g => renderGuessRow(g));
   updateGuessCounter();
@@ -304,10 +305,13 @@ function endGame(won) {
   document.getElementById("guessInput").disabled = true;
   document.getElementById("guessButton").disabled = true;
 
+  document.getElementById("shareButton").style.display = "inline-block";
+
   if (!won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
