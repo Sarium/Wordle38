@@ -236,7 +236,7 @@ if (gameState.guesses.length >= MAX_GUESSES) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
 }
 
-.display = "inline-block";
+display = "inline-block";
   }
   function toEmoji(result) {
   if (result === "match") return "🟩";
@@ -318,5 +318,6 @@ function endGame(won) {
 }
 }
 }
+
 
 
