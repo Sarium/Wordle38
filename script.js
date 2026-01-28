@@ -297,7 +297,7 @@ function renderGuessRow(guess) {
     <td class="${guess.results[4]}">
       ${powersText}
     </td>
-
+`
 
   document.querySelector("#results tbody").appendChild(row);
 }
@@ -383,6 +383,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
