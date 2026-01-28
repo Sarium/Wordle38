@@ -23,52 +23,75 @@ const characters = [
   }
 ];
 
-// 🔹 PICK DAILY CHARACTER (based on date)
-const todayIndex = new Date().getDate() % characters.length;
-const dailyCharacter = characters[todayIndex];
+const daySeed = Math.floor(Date.now() / 86400000);
+const dailyCharacter = characters[daySeed % characters.length];
 
 // 🔹 Populate dropdown
-const select = document.getElementById("guessSelect");
+const datalist = document.getElementById("characters");
 characters.forEach(char => {
   const option = document.createElement("option");
   option.value = char.name;
-  option.textContent = char.name;
-  select.appendChild(option);
+  datalist.appendChild(option);
 });
 
 // 🔹 Comparison helpers
-function compareValue(guess, target) {
+function compareExact(guess, target) {
   if (guess === target) return "match";
-  if (guess && target && guess !== target) return "partial";
+  if (guess && target) return "partial";
   return "nope";
 }
 
-function comparePowers(guessPowers, targetPowers) {
-  if (guessPowers.some(p => targetPowers.includes(p))) {
-    return guessPowers.length === targetPowers.length ? "match" : "partial";
-  }
-  return "nope";
-}
-
-// 🔹 Submit guess
 function submitGuess() {
-  const guessName = select.value;
-  if (!guessName) return;
+  const input = document.getElementById("guessInput");
+  const guessName = input.value.trim();
 
-  const guessChar = characters.find(c => c.name === guessName);
+  const guessChar = characters.find(
+    c => c.name.toLowerCase() === guessName.toLowerCase()
+  );
+
+  if (!guessChar) {
+    alert("Character not found.");
+    return;
+  }
+
   const row = document.createElement("tr");
 
   row.innerHTML = `
     <td>${guessChar.name}</td>
-    <td class="${compareValue(guessChar.birthplace, dailyCharacter.birthplace)}"></td>
-    <td class="${compareValue(guessChar.firstAppearance, dailyCharacter.firstAppearance)}"></td>
-    <td class="${compareValue(guessChar.species, dailyCharacter.species)}"></td>
-    <td class="${comparePowers(guessChar.powers, dailyCharacter.powers)}"></td>
+
+    <td class="${compareExact(
+      guessChar.birthplace,
+      dailyCharacter.birthplace
+    )}">
+      ${guessChar.birthplace}
+    </td>
+
+    <td class="${compareExact(
+      guessChar.firstAppearance,
+      dailyCharacter.firstAppearance
+    )}">
+      ${guessChar.firstAppearance}
+    </td>
+
+    <td class="${compareExact(
+      guessChar.species,
+      dailyCharacter.species
+    )}">
+      ${guessChar.species}
+    </td>
+
+    <td class="${comparePowers(
+      guessChar.powers,
+      dailyCharacter.powers
+    )}">
+      ${guessChar.powers.join(", ")}
+    </td>
   `;
 
   document.querySelector("#results tbody").appendChild(row);
+  input.value = "";
 
   if (guessChar.name === dailyCharacter.name) {
-    alert("🎉 You found today’s character!");
+    alert("Você achou o personagem!");
   }
 }

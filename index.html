@@ -9,9 +9,8 @@
   <h1>Wordle38</h1>
   <p>ADVINHA O PERSONAGEM :3</p>
 
-  <select id="guessSelect">
-    <option value="">-- Seu Chute --</option>
-  </select>
+  <input id="guessInput" list="characters" placeholder="Type a name…" />
+  <datalist id="characters"></datalist>
   <button onclick="submitGuess()">Guess</button>
 
   <table id="results">
