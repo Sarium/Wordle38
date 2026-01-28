@@ -1,0 +1,33 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #111;
+  color: #eee;
+  text-align: center;
+}
+
+select, button {
+  padding: 8px;
+  font-size: 1rem;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #444;
+  padding: 8px 12px;
+}
+
+.match {
+  background-color: #3aa655; /* green */
+}
+
+.partial {
+  background-color: #c9a227; /* yellow */
+}
+
+.nope {
+  background-color: #555;
+}
