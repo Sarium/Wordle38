@@ -1,5 +1,5 @@
 const TIMEZONE_OFFSET = -3; // Brasília (GMT-3)
-const MAX_GUESSES = 6;
+const MAX_GUESSES = 10;
 const STORAGE_KEY = "Wordle38-state";
 
 function isAdmin() {
@@ -388,6 +388,7 @@ function endGame(won) {
     alert(`❌ Out of guesses! Today's character was ${dailyCharacter.name}`);
   }
 }
+
 
 
 
