@@ -395,11 +395,8 @@ if (p.info.description) {
   "│ ",
   "tree-description"
 );
-
-
-        }
-                     );
-    });
+}
+});
 
     if (node.children) {
       Object.entries(node.children).forEach(([child, childNode]) =>
@@ -717,6 +714,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
