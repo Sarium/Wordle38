@@ -312,7 +312,7 @@ const hoverText =
     </td>
   
 <td class="${guess.results[4]}" title="${hoverText}">
-  ${values.powers.join(", ")} ${inlineCount}${infoIcon}
+  ${values.powers.join(", ")}<span class="power-count"> ${inlineCount}${infoIcon}</span>
 </td>
 
 
@@ -402,3 +402,4 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
