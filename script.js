@@ -47,7 +47,7 @@ const POWER_SOURCES = {
       "Alma": {
         children: {}
       },
-      "Títulos": {
+      "Título": {
         children: {}
       },
       "Habilidades": {
@@ -351,15 +351,13 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
 
 
 function renderSource(name, node, depth = 0) {
-
-  const termLower = search.toLowerCase();
   const powersByFamily = {};
 
-Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
+  Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
     const matches =
-      !termLower ||
-      power.toLowerCase().includes(termLower) ||
-      info.description?.toLowerCase().includes(termLower);
+      !search ||
+      power.toLowerCase().includes(search) ||
+      info.description?.toLowerCase().includes(search);
 
     if (info.source === name && matches) {
       powersByFamily[info.family] ??= [];
@@ -372,7 +370,15 @@ Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
 
   if (!hasPowers && !hasChildren) return;
 
-  renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family");
+  renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family", true);
+
+  Object.entries(powersByFamily).forEach(([family, powers], i) => {
+    renderRow(
+      family,
+      depth + 1,
+      i === Object.keys(powersByFamily).length - 1 ? "└─" : "├─",
+      "tree-family"
+    );
 
     powers.forEach((p, j) => {
       renderRow(
@@ -391,12 +397,13 @@ Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
         );
       }
     });
-  };
-  
-if (node.children && Object.keys(node.children).length > 0) {
-  Object.entries(node.children).forEach(([child, childNode]) => {
-    renderSource(child, childNode, depth + 1);
   });
+
+  if (hasChildren) {
+    Object.entries(node.children).forEach(([child, childNode]) => {
+      renderSource(child, childNode, depth + 1);
+    });
+  }
 }
 
 
@@ -421,7 +428,24 @@ document.addEventListener("click", e => {
 });
 }
 
+document.addEventListener("click", e => {
+  const row = e.target.closest(".collapsible");
+  if (!row) return;
 
+  const startDepth = Number(row.dataset.depth);
+  const expanded = row.dataset.expanded === "true";
+  row.dataset.expanded = expanded ? "false" : "true";
+
+  let next = row.nextElementSibling;
+
+  while (next) {
+    const nextDepth = Number(next.dataset.depth);
+    if (nextDepth <= startDepth) break;
+
+    next.style.display = expanded ? "none" : "";
+    next = next.nextElementSibling;
+  }
+});
 
 /* ---------------- GAME LOGIC ---------------- */
 
@@ -535,8 +559,7 @@ function getPuzzleNumber() {
 }
 
 function getPowerDescription(power) {
-  const key = normalizePower(power);
-  return POWER_DICTIONARY[key] || "Sem descrição disponível.";
+  return POWER_DICTIONARY[power]?.description || "Sem descrição disponível.";
 }
 
 /* ---------------- RENDER ---------------- */
@@ -706,9 +729,3 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
-
-
-
-
-
-
