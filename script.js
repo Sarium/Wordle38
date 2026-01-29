@@ -576,8 +576,7 @@ function renderGuessRow(guess) {
 if (powersInfo.families !== powersInfo.exact) {
   const inlineCount =
     `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
-}
-else {
+} else {
   const inlineCount =
     `${powersInfo.exact}/${powersInfo.total}`;
 }
@@ -708,6 +707,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
