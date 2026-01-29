@@ -155,3 +155,48 @@ th, td {
   opacity: 0.7;
   margin-left: 4px;
 }
+
+.power-tree {
+  font-family: monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding-left: 12px;
+}
+
+.tree-row {
+  display: grid;
+  grid-template-columns: 2ch auto;
+  column-gap: 0.5ch;
+  align-items: start;
+}
+
+.tree-branch {
+  color: #888;
+  text-align: right;
+}
+
+.tree-label {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.depth-0 { margin-left: 0; }
+.depth-1 { margin-left: 1.5em; }
+.depth-2 { margin-left: 3em; }
+.depth-3 { margin-left: 4.5em; }
+.depth-4 { margin-left: 6em; }
+.tree-family {
+  font-weight: 600;
+}
+
+.tree-power {
+  opacity: 0.9;
+}
+
+.tree-description {
+  margin-left: calc(2ch + 0.5ch);
+  font-size: 0.85em;
+  opacity: 0.7;
+  max-width: 60ch;
+}
