@@ -59,8 +59,15 @@ th, td {
 .power-count {
   margin-left: 8px;
   white-space: nowrap;
-  opacity: 0.85;
+  font-size: 0.85em;
+  transition: opacity 0.2s ease;
 }
 
+.power-count.dim {
+  opacity: 0.35;
+}
 
+.power-count.active {
+  opacity: 0.85;
+}
 
