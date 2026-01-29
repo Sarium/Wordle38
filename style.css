@@ -220,7 +220,7 @@ box-shadow:
   grid-template-columns: 2ch auto;
   column-gap: 0.5ch;
 
-  padding-left: 3em; /* aligns under power name */
+  margin-left: 3em; /* aligns under power */
   font-size: 0.85em;
   opacity: 0.7;
 
@@ -233,17 +233,6 @@ box-shadow:
   text-align: right;
 }
 
-.tree-description::before {
-  content: "│";
-  color: #888;
-  text-align: right;
-}
- {
-  margin-left: calc(2ch + 0.5ch);
-  font-size: 0.85em;
-  opacity: 0.7;
-  max-width: 60ch;
-}
 
 .collapsible > .tree-label::before {
   content: "▾ ";
@@ -255,7 +244,3 @@ box-shadow:
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
-
-
-
-
