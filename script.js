@@ -330,96 +330,74 @@ function buildPowerDictionary(search = "") {
   container.innerHTML = "";
   container.className = "power-tree";
 
-function renderRow(label, depth, isLast, className = "") {
-  const row = document.createElement("div");
-  row.className = `tree-row ${className}`;
-  row.dataset.depth = depth;
-  row.dataset.last = isLast ? "true" : "false";
-  row.style.setProperty("--depth", depth);
+  // Helper: render a row with prefix based on depth
+  function renderRow(label, depth, isLast, className = "") {
+    const row = document.createElement("div");
+    row.className = `tree-row ${className}`;
+    row.dataset.depth = depth;
+    row.dataset.last = isLast ? "true" : "false";
+    row.style.setProperty("--depth", depth);
+    row.innerHTML = `
+      <span class="tree-prefix"></span>
+      <span class="tree-label">${label}</span>
+    `;
+    container.appendChild(row);
+    return row;
+  }
 
-  row.innerHTML = `
-    <span class="tree-prefix"></span>
-    <span class="tree-label">${label}</span>
-  `;
-
-  container.appendChild(row);
-  return row;
-}
-
-
-
-
-
-function renderSource(name, node, depth = 0) {
-  // render the source itself
-  renderRow(name, depth, false, "tree-family");
-
-  // group powers by family
-  const powersByFamily = {};
-  Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
-    if (info.source === name) {
-      powersByFamily[info.family] ??= [];
-      powersByFamily[info.family].push({ name: power, info });
-    }
-  });
-
-  const families = Object.entries(powersByFamily);
-
-  families.forEach(([family, powers], i) => {
-    const lastFamily = i === families.length - 1;
-
-    renderRow(family, depth + 1, lastFamily, "tree-family");
-
-    powers.forEach((p, j) => {
-      const lastPower = j === powers.length - 1;
-
-      renderRow(p.name, depth + 2, lastPower, "tree-power");
-
-      if (p.info.description) {
-        renderRow(
-          p.info.description,
-          depth + 3,
-          true,
-          "tree-description"
-        );
+  // Recursive source renderer
+  function renderSource(name, node, depth = 0) {
+    // Collect powers for this source that match search
+    const powersByFamily = {};
+    Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
+      const matches =
+        !search ||
+        power.toLowerCase().includes(search) ||
+        info.description?.toLowerCase().includes(search);
+      if (info.source === name && matches) {
+        powersByFamily[info.family] ??= [];
+        powersByFamily[info.family].push({ name: power, info });
       }
     });
-  });
 
-  if (node.children) {
-    const entries = Object.entries(node.children);
-    entries.forEach(([child, childNode], i) => {
-      renderSource(child, childNode, depth + 1);
+    const families = Object.entries(powersByFamily);
+
+    // Render source itself only if it has powers or children
+    const hasChildren = node.children && Object.keys(node.children).length > 0;
+    if (families.length > 0 || hasChildren) {
+      renderRow(name, depth, false, "tree-family");
+    }
+
+    families.forEach(([family, powers], i) => {
+      const lastFamily = i === families.length - 1;
+      renderRow(family, depth + 1, lastFamily, "tree-family");
+
+      powers.forEach((p, j) => {
+        const lastPower = j === powers.length - 1;
+        renderRow(p.name, depth + 2, lastPower, "tree-power");
+
+        if (p.info.description) {
+          renderRow(p.info.description, depth + 3, true, "tree-description");
+        }
+      });
     });
+
+    // Recurse into children
+    if (hasChildren) {
+      const entries = Object.entries(node.children);
+      entries.forEach(([child, childNode], i) => {
+        const lastChild = i === entries.length - 1;
+        renderSource(child, childNode, depth + 1);
+      });
+    }
   }
+
+  // Start rendering from root sources
+  Object.entries(POWER_SOURCES).forEach(([name, node]) => {
+    renderSource(name, node, 0);
+  });
 }
 
-
-  
-document.addEventListener("click", e => {
-  const row = e.target.closest(".collapsible");
-  if (!row) return;
-
-  const startDepth = Number(row.dataset.depth);
-  const expanded = row.dataset.expanded === "true";
-  row.dataset.expanded = expanded ? "false" : "true";
-
-  let next = row.nextElementSibling;
-
-  while (next) {
-    const nextDepth = Number(next.dataset.depth);
-    if (nextDepth <= startDepth) break;
-
-    next.style.display = expanded ? "none" : "";
-    next = next.nextElementSibling;
-  }
-});
-
-Object.entries(POWER_SOURCES).forEach(([name, node]) => {
-  renderSource(name, node, 0);
-});
-console.log("Building dictionary", POWER_SOURCES);
-}
 
 document.addEventListener("click", e => {
   const row = e.target.closest(".collapsible");
@@ -722,6 +700,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
