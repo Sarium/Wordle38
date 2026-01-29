@@ -403,7 +403,7 @@ if (p.info.description) {
         renderSource(child, childNode, depth + 1)
       );
     }
-  }
+  })
 
   Object.entries(POWER_SOURCES).forEach(([name, node]) =>
     renderSource(name, node)
@@ -714,6 +714,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
