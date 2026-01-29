@@ -327,48 +327,71 @@ function getSourceChain(sourceName) {
 function buildPowerDictionary() {
   const container = document.getElementById("powerList");
   container.innerHTML = "";
+  container.className = "power-tree";
 
-  function renderNode(name, node, depth = 0) {
-    const block = document.createElement("div");
-    block.style.marginLeft = `${depth * 14}px`;
-    block.className = "power-family-block";
+  function renderRow(label, depth, branch, className = "") {
+    const row = document.createElement("div");
+    row.className = `tree-row depth-${depth} ${className}`;
+    row.innerHTML = `
+      <span class="tree-branch">${branch}</span>
+      <span class="tree-label">${label}</span>
+    `;
+    container.appendChild(row);
+  }
 
-    block.innerHTML = `<div class="power-family-title">${name}</div>`;
-    container.appendChild(block);
+  function renderSource(name, node, depth = 0) {
+    renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family");
 
-    // Powers that originate here
-    Object.entries(POWER_DICTIONARY)
-      .filter(([_, p]) => p.source === name)
-      .forEach(([power, p]) => {
-        const item = document.createElement("div");
-        item.className = "power-entry";
-        item.style.marginLeft = `${(depth + 1) * 14}px`;
+    // Group powers by family
+    const powersByFamily = {};
+    Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
+      if (info.source === name) {
+        powersByFamily[info.family] ??= [];
+        powersByFamily[info.family].push({ name: power, info });
+      }
+    });
 
-        item.innerHTML = `
-          <strong>${power}</strong>
-          <span class="power-family-tag">(${p.family})</span>
-          ${
-            p.description
-              ? `<div class="power-description">${p.description}</div>`
-              : ""
-          }
-        `;
+    const families = Object.entries(powersByFamily);
 
-        container.appendChild(item);
+    families.forEach(([family, powers], i) => {
+      const isLastFamily = i === families.length - 1;
+      renderRow(
+        family,
+        depth + 1,
+        isLastFamily ? "└─" : "├─",
+        "tree-family"
+      );
+
+      powers.forEach((p, j) => {
+        renderRow(
+          p.name,
+          depth + 2,
+          j === powers.length - 1 ? "└─" : "├─",
+          "tree-power"
+        );
+
+        if (p.info.description) {
+          const desc = document.createElement("div");
+          desc.className = "tree-description";
+          desc.style.marginLeft = `${(depth + 3) * 1.5}em`;
+          desc.textContent = p.info.description;
+          container.appendChild(desc);
+        }
       });
+    });
 
-    // Children
     if (node.children) {
       Object.entries(node.children).forEach(([child, childNode]) =>
-        renderNode(child, childNode, depth + 1)
+        renderSource(child, childNode, depth + 1)
       );
     }
   }
 
   Object.entries(POWER_SOURCES).forEach(([name, node]) =>
-    renderNode(name, node)
+    renderSource(name, node)
   );
 }
+
 
 /* ---------------- GAME LOGIC ---------------- */
 
@@ -653,6 +676,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
