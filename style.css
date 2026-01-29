@@ -99,14 +99,21 @@ th, td {
 }
 
 .power-modal-content {
-  max-width: 480px;
+  width: min(90vw, 720px);
+  max-height: 75vh;
+
   background: #111;
-  padding: 16px;
-  max-height: 70vh;
+  padding: 18px 20px;
+
   overflow-y: auto;
-  width: 320px;
-  border-radius: 6px;
+  border-radius: 8px;
+
+  border: 1px solid rgba(255,255,255,0.15);
+box-shadow:
+  0 0 0 1px rgba(0,0,0,0.6) inset,
+  0 12px 30px rgba(0,0,0,0.6);
 }
+
 
 .power-entry {
   margin-bottom: 8px;
@@ -163,6 +170,10 @@ th, td {
   font-size: 0.95rem;
   line-height: 1.6;
   padding-left: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.02);
 }
 
 .tree-row {
@@ -174,9 +185,12 @@ th, td {
 }
 
 .tree-branch {
+  width: 2ch;
   color: #888;
   text-align: right;
+  user-select: none;
 }
+
 
 .tree-label {
   white-space: normal;
@@ -197,36 +211,26 @@ th, td {
   position: relative;
 }
 
-.tree-row::before {
-  content: "";
-  position: absolute;
-  left: 0.6ch;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(255,255,255,0.15);
-}
-
-.depth-0::before {
-  display: none;
-}
-
 .tree-power {
   opacity: 0.9;
 }
 
-..tree-description {
+.tree-description {
   display: grid;
   grid-template-columns: 2ch auto;
   column-gap: 0.5ch;
 
-  margin-left: 0; /* important */
-  padding-left: calc(3em + 2ch); /* matches depth-3 */
-
+  padding-left: 3em; /* aligns under power name */
   font-size: 0.85em;
   opacity: 0.7;
 
   max-width: 60ch;
+}
+
+.tree-description::before {
+  content: "│";
+  color: #888;
+  text-align: right;
 }
 
 .tree-description::before {
@@ -251,6 +255,7 @@ th, td {
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
 
 
 
