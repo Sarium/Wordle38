@@ -330,17 +330,18 @@ function buildPowerDictionary(search = "") {
   container.innerHTML = "";
   container.className = "power-tree";
 
-function renderRow(label, prefix, connector, className = "") {
+function renderRow(label, prefix = "", connector = "", className = "") {
   const row = document.createElement("div");
   row.className = `tree-row ${className}`;
 
   row.innerHTML = `
-    <span class="tree-branch">${prefix}${connector}</span>
+    <span class="tree-branch">${String(prefix)}${String(connector)}</span>
     <span class="tree-label">${label}</span>
   `;
 
   container.appendChild(row);
 }
+
 
 
 
@@ -374,14 +375,14 @@ function renderSource(name, node, prefix = "") {
 
       renderRow(p.name, powerPrefix, powerConnector, "tree-power");
 
-      if (p.info.description) {
-        renderRow(
-          p.info.description,
-          powerPrefix + (lastPower ? "   " : "│  "),
-          "│  ",
-          "tree-description"
-        );
-      }
+if (p.info.description) {
+  renderRow(
+    p.info.description,
+    powerPrefix + "│  ",
+       "",
+       "tree-description"
+       );
+     }
     });
   });
 
@@ -724,5 +725,6 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
