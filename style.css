@@ -182,10 +182,41 @@ box-shadow:
   align-items: start;
 }
 
-.tree-branch {
-  white-space: pre;
+.tree-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.5ch;
+  position: relative;
+}
+
+.tree-prefix {
+  position: relative;
+  width: calc(var(--depth) * 1.5em + 2ch);
+}
+
+/* vertical line */
+.tree-prefix::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--depth) * 1.5em);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+/* horizontal connector */
+.tree-prefix::after {
+  content: "─";
+  position: absolute;
+  left: calc(var(--depth) * 1.5em);
+  top: 0.9em;
   color: #888;
-  user-select: none;
+}
+
+/* stop line for last child */
+.tree-row[data-last="true"] .tree-prefix::before {
+  height: 0.9em;
 }
 
 .tree-label {
@@ -203,9 +234,17 @@ box-shadow:
 }
 
 .tree-description {
+  display: grid;
+  grid-template-columns: 2ch auto;
+  column-gap: 0.5ch;
+
+  margin-left: 3em; /* aligns under power name */
   font-size: 0.85em;
   opacity: 0.7;
+
+  max-width: 60ch;
 }
+
 
 .collapsible > .tree-label::before {
   content: "▾ ";
@@ -217,5 +256,6 @@ box-shadow:
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
 
 
