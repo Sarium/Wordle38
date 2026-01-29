@@ -335,6 +335,7 @@ function renderRow(label, depth, isLast, className = "") {
   row.className = `tree-row ${className}`;
   row.dataset.depth = depth;
   row.dataset.last = isLast ? "true" : "false";
+  row.style.setProperty("--depth", depth);
 
   row.innerHTML = `
     <span class="tree-prefix"></span>
@@ -349,11 +350,9 @@ function renderRow(label, depth, isLast, className = "") {
 
 
 
-function renderSource(name, node, prefix = "") {
-renderRow(family, depth + 1, i === families.length - 1, "tree-family");
-
-
-  const childPrefix = prefix + "   ";
+function renderSource(name, node, depth = 0) {
+  // render the source itself
+  renderRow(name, depth, false, "tree-family");
 
   // group powers by family
   const powersByFamily = {};
@@ -368,39 +367,33 @@ renderRow(family, depth + 1, i === families.length - 1, "tree-family");
 
   families.forEach(([family, powers], i) => {
     const lastFamily = i === families.length - 1;
-    const famConnector = lastFamily ? "└─ " : "├─ ";
-    const famPrefix = prefix + (lastFamily ? "   " : "│  ");
 
-renderRow(family, depth + 1, i === families.length - 1, "tree-family");
-
+    renderRow(family, depth + 1, lastFamily, "tree-family");
 
     powers.forEach((p, j) => {
       const lastPower = j === powers.length - 1;
-      const powerConnector = lastPower ? "└─ " : "├─ ";
-      const powerPrefix = famPrefix;
 
-renderRow(p.name, depth + 2, j === powers.length - 1, "tree-power");
+      renderRow(p.name, depth + 2, lastPower, "tree-power");
 
-
-renderRow(p.info.description, depth + 3, true, "tree-description");
+      if (p.info.description) {
+        renderRow(
+          p.info.description,
+          depth + 3,
+          true,
+          "tree-description"
+        );
+      }
     });
   });
 
   if (node.children) {
     const entries = Object.entries(node.children);
     entries.forEach(([child, childNode], i) => {
-      const last = i === entries.length - 1;
-      renderSource(
-        child,
-        childNode,
-        prefix + (last ? "   " : "│  ")
-      );
+      renderSource(child, childNode, depth + 1);
     });
   }
-
-  row.style.setProperty("--depth", depth);
-
 }
+
 
   
 document.addEventListener("click", e => {
@@ -729,6 +722,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
