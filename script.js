@@ -437,6 +437,7 @@ document.addEventListener("click", e => {
 });
 
 
+
 /* ---------------- GAME LOGIC ---------------- */
 
 function compareExact(a, b) {
@@ -720,6 +721,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
