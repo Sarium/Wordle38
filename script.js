@@ -426,6 +426,11 @@ document.addEventListener("click", e => {
     next = next.nextElementSibling;
   }
 });
+
+Object.entries(POWER_SOURCES).forEach(([name, node]) => {
+  renderSource(name, node, 0);
+});
+console.log("Building dictionary", POWER_SOURCES);
 }
 
 document.addEventListener("click", e => {
@@ -729,3 +734,4 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
