@@ -181,10 +181,7 @@ th, td {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Do not draw line for root */
-.depth-0::before {
-  display: none;
-}
+
 
 .tree-branch {
   color: #888;
@@ -204,6 +201,11 @@ th, td {
 .depth-4 { margin-left: 6em; }
 .tree-family {
   font-weight: 600;
+}
+
+/* Do not draw line for root */
+.depth-0::before {
+  display: none;
 }
 
 .tree-power {
@@ -227,3 +229,4 @@ th, td {
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
