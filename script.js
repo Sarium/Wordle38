@@ -351,12 +351,11 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
 
 
 function renderSource(name, node, depth = 0) {
-  renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family");
 
   const termLower = search.toLowerCase();
   const powersByFamily = {};
 
-  Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
+Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
     const matches =
       !termLower ||
       power.toLowerCase().includes(termLower) ||
@@ -368,17 +367,12 @@ function renderSource(name, node, depth = 0) {
     }
   });
 
-  const families = Object.entries(powersByFamily);
+  const hasPowers = Object.keys(powersByFamily).length > 0;
+  const hasChildren = node.children && Object.keys(node.children).length > 0;
 
-  families.forEach(([family, powers], i) => {
-    const isLastFamily = i === families.length - 1;
+  if (!hasPowers && !hasChildren) return;
 
-    renderRow(
-      family,
-      depth + 1,
-      isLastFamily ? "└─" : "├─",
-      "tree-family"
-    );
+  renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family");
 
     powers.forEach((p, j) => {
       renderRow(
@@ -398,13 +392,13 @@ function renderSource(name, node, depth = 0) {
       }
     });
   });
-
-  if (node.children) {
-    Object.entries(node.children).forEach(([child, childNode]) => {
-      renderSource(child, childNode, depth + 1);
-    });
-  }
+  
+if (node.children && Object.keys(node.children).length > 0) {
+  Object.entries(node.children).forEach(([child, childNode]) => {
+    renderSource(child, childNode, depth + 1);
+  });
 }
+
 
 
 document.addEventListener("click", e => {
@@ -712,6 +706,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
