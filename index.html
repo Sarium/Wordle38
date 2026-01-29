@@ -8,7 +8,10 @@
 <body>
   <h1>Wordle38</h1>
   <p>ADVINHA O PERSONAGEM :3</p>
+  
 
+  <button id="powerDictionaryBtn" class="power-btn">📘 Poderes</button>
+  
 <div id="stats">
   Streak: <span id="streak">0</span> |
   Max: <span id="maxStreak">0</span>
@@ -49,8 +52,25 @@
  </button>
 
   <script src="script.js"></script>
+
+  <div id="powerModal" class="power-modal hidden">
+  <div class="power-modal-content">
+    <h3>Dicionário de Poderes</h3>
+    <input
+  id="powerSearch"
+  type="text"
+  placeholder="Buscar poder ou família..."
+  class="power-search"
+/>
+
+    <div id="powerList"></div>
+    <button id="closePowerModal">Fechar</button>
+  </div>
+</div>
+
 </body>
 </html>
+
 
 
 
