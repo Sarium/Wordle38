@@ -380,12 +380,14 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
           "tree-power"
         );
 
-        if (p.info.description) {
-          const desc = document.createElement("div");
-          desc.className = "tree-description";
-          desc.style.marginLeft = `${(depth + 3) * 1.5}em`;
-          desc.textContent = p.info.description;
-          container.appendChild(desc);
+if (p.info.description) {
+  const desc = document.createElement("div");
+  desc.className = `tree-description depth-${depth + 2}`;
+  desc.dataset.depth = depth + 2;
+  desc.textContent = p.info.description;
+  container.appendChild(desc);
+}
+
         }
       });
     });
@@ -400,21 +402,6 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
   Object.entries(POWER_SOURCES).forEach(([name, node]) =>
     renderSource(name, node)
   );
-
-  const sourceRow = renderRow(
-  name,
-  depth,
-  depth === 0 ? "" : "└─",
-  "tree-family",
-  true
-);
-const familyRow = renderRow(
-  family,
-  depth + 1,
-  isLastFamily ? "└─" : "├─",
-  "tree-family",
-  true
-);
 }
 
 document.addEventListener("click", e => {
@@ -721,6 +708,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
