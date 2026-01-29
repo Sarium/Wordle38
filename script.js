@@ -151,7 +151,7 @@ const POWER_DICTIONARY = {
   "Espírito": {
     family: "Espírito",
     source: "Alma",
-    description: "Uma pessoa sem Casca, preso em sua Alma."
+    description: "Uma pessoa sem Casca, presa em sua Alma."
   },
   "Vampiro": {
     family: "Vampiro",
@@ -329,15 +329,25 @@ function buildPowerDictionary() {
   container.innerHTML = "";
   container.className = "power-tree";
 
-  function renderRow(label, depth, branch, className = "") {
-    const row = document.createElement("div");
-    row.className = `tree-row depth-${depth} ${className}`;
-    row.innerHTML = `
-      <span class="tree-branch">${branch}</span>
-      <span class="tree-label">${label}</span>
-    `;
-    container.appendChild(row);
+function renderRow(label, depth, branch, className = "", collapsible = false) {
+  const row = document.createElement("div");
+  row.className = `tree-row depth-${depth} ${className}`;
+  row.dataset.depth = depth;
+
+  if (collapsible) {
+    row.classList.add("collapsible");
+    row.dataset.expanded = "true";
   }
+
+  row.innerHTML = `
+    <span class="tree-branch">${branch}</span>
+    <span class="tree-label">${label}</span>
+  `;
+
+  container.appendChild(row);
+  return row;
+}
+
 
   function renderSource(name, node, depth = 0) {
     renderRow(name, depth, depth === 0 ? "" : "└─", "tree-family");
@@ -390,7 +400,41 @@ function buildPowerDictionary() {
   Object.entries(POWER_SOURCES).forEach(([name, node]) =>
     renderSource(name, node)
   );
+
+  const sourceRow = renderRow(
+  name,
+  depth,
+  depth === 0 ? "" : "└─",
+  "tree-family",
+  true
+);
+const familyRow = renderRow(
+  family,
+  depth + 1,
+  isLastFamily ? "└─" : "├─",
+  "tree-family",
+  true
+);
 }
+
+document.addEventListener("click", e => {
+  const row = e.target.closest(".collapsible");
+  if (!row) return;
+
+  const startDepth = Number(row.dataset.depth);
+  const expanded = row.dataset.expanded === "true";
+  row.dataset.expanded = expanded ? "false" : "true";
+
+  let next = row.nextElementSibling;
+
+  while (next) {
+    const nextDepth = Number(next.dataset.depth);
+    if (nextDepth <= startDepth) break;
+
+    next.style.display = expanded ? "none" : "";
+    next = next.nextElementSibling;
+  }
+});
 
 
 /* ---------------- GAME LOGIC ---------------- */
@@ -676,6 +720,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
