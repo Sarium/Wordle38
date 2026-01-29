@@ -330,23 +330,28 @@ function buildPowerDictionary(search = "") {
   container.innerHTML = "";
   container.className = "power-tree";
 
-function renderRow(label, prefix = "", connector = "", className = "") {
+function renderRow(label, depth, isLast, className = "") {
   const row = document.createElement("div");
   row.className = `tree-row ${className}`;
+  row.dataset.depth = depth;
+  row.dataset.last = isLast ? "true" : "false";
 
   row.innerHTML = `
-    <span class="tree-branch">${String(prefix)}${String(connector)}</span>
+    <span class="tree-prefix"></span>
     <span class="tree-label">${label}</span>
   `;
 
   container.appendChild(row);
+  return row;
 }
 
 
 
 
+
 function renderSource(name, node, prefix = "") {
-  renderRow(name, prefix, "└─ ", "tree-family");
+renderRow(family, depth + 1, i === families.length - 1, "tree-family");
+
 
   const childPrefix = prefix + "   ";
 
@@ -366,23 +371,18 @@ function renderSource(name, node, prefix = "") {
     const famConnector = lastFamily ? "└─ " : "├─ ";
     const famPrefix = prefix + (lastFamily ? "   " : "│  ");
 
-    renderRow(family, prefix, famConnector, "tree-family");
+renderRow(family, depth + 1, i === families.length - 1, "tree-family");
+
 
     powers.forEach((p, j) => {
       const lastPower = j === powers.length - 1;
       const powerConnector = lastPower ? "└─ " : "├─ ";
       const powerPrefix = famPrefix;
 
-      renderRow(p.name, powerPrefix, powerConnector, "tree-power");
+renderRow(p.name, depth + 2, j === powers.length - 1, "tree-power");
 
-if (p.info.description) {
-  renderRow(
-    p.info.description,
-    powerPrefix + "│  ",
-       "",
-       "tree-description"
-       );
-     }
+
+renderRow(p.info.description, depth + 3, true, "tree-description");
     });
   });
 
@@ -397,8 +397,12 @@ if (p.info.description) {
       );
     });
   }
+
+  row.style.setProperty("--depth", depth);
+
 }
 
+  
 document.addEventListener("click", e => {
   const row = e.target.closest(".collapsible");
   if (!row) return;
@@ -725,6 +729,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
