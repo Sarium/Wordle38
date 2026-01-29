@@ -28,6 +28,152 @@ function normalizePower(power) {
     .trim();
 }
 
+const POWER_SOURCES = {
+  "Conexão": {
+    children: {
+      "Marca": {
+        children: {}
+      },
+      "Herança": {
+        children: {}
+      },
+      "Besta":{
+        children: {}
+      }
+    }
+  },
+  "Vida": {
+    children: {
+      "Alma": {
+        children: {}
+      },
+      "Títulos": {
+        children: {}
+      },
+      "Habilidades": {
+        children: {}
+      }
+    }
+  }
+};
+
+const POWER_DICTIONARY = {
+  "Despertar": {
+    family: "Despertar",
+    source: "Marca",
+    description: "O poder oríginario de uma Marca. Involve utilizar Energia para criar, controlar ou modificar algo. Brilha branco."
+  },
+  "Despertar Laranja": {
+    family: "Despertar",
+    source: "Marca",
+    description: "Variação Laranja de um Despertar. Não usa Energia, ao invés disso se baseando inteiramente na Casca."
+  },
+  "Despertar Roxo": {
+    family: "Despertar",
+    source: "Marca",
+    description: "Variação Roxa de um Despertar. Consome muito mais Energia do que precisa, mas seus poderes são amplificados de varias maneiras."
+  },
+  "Despertar de Pecado": {
+    family: "Despertar",
+    source: "Marca",
+    description: "Variação de um Despertar, criado pelo Pai dos Pecados (Atrax). Poderes tem efeitos permanentes e descontrolaveis no seu ser."
+  },
+  "Despertar Original": {
+    family: "Despertar",
+    source: "Marca",
+    description: "Variação de um Despertar, criado por um Relíquario. Propriedades ainda desconhecidas."
+  },
+  "Sexto Sentido": {
+    family: "Sexto Sentido",
+    source: "Marca",
+    description: "Uma evolução de um Despertar, permitindo que um Despertado tenha sentidos baseados em sua Palavra"
+  },
+  "Segundo Despertar": {
+    family: "Segundo Despertar",
+    source: "Marca",
+    description: "Uma evolução de um Despertar. Propriedades ainda desconhecidas"
+  },
+  "Herança do Som": {
+    family: "Herança",
+    source: "Herança",
+    description: "Permite a criação e manipulação de ondas sonoras."
+  },
+  "Herança da Memória": {
+    family: "Herança",
+    source: "Herança",
+    description: "Permite a manipulação de memórias."
+  },
+  "Runas": {
+    family: "Runas",
+    source: "Habilidades",
+    description: "A habilidade de utilizar Prácuo, a antiga língua dos Dragões."
+  },
+  "Retornado": {
+    family: "Retornado",
+    source: "Alma",
+    description: "Alguem que morreu e então, por meio de uma benção dos Guardiões, retornou a vida."
+  },
+  "Contrato": {
+    family: "Contrato",
+    source: "Conexão",
+    description: "A habilidade de criar Contratos"
+  },
+  "Mensageiro": {
+    family: "Mensageiro",
+    source: "Alma",
+    description: "Escolhido pelo Chefe para se tornar um Mensageiro"
+  },
+  "Deus": {
+    family: "Deus",
+    source: "Título",
+    description: "Um cargo mais do que um poder. Cultuado por pelo menos dez pessoas."
+  },
+  "Relíquia": {
+    family: "Relíquia",
+    source: "Conexão",
+    description: "Alguem que possui um laço com uma Relíquia."
+  },
+  "Olho de Alma": {
+    family: "Olho de Alma",
+    source: "Alma",
+    description: "Alguem que possui um Olho de Alma."
+  },
+  "Visão do Futuro": {
+    family: "Visão do Futuro",
+    source: "Habilidades",
+    description: "A habilidade de prever o futuro. Geralmente alcançado atráves de inteligência extrema."
+  },
+  "Controle de Energia": {
+    family: "Controle de Energia",
+    source: "Habilidades",
+    description: "A habilidade de controlar sua Energia por metodos puramente naturais."
+  },
+  "Espírito": {
+    family: "Espírito",
+    source: "Alma",
+    description: "Uma pessoa sem Casca, preso em sua Alma."
+  },
+  "Vampiro": {
+    family: "Vampiro",
+    source: "Alma",
+    description: "Uma pessoa que consome Alma para se sustentar."
+  },
+  "Bestialização": {
+    family: "Bestialização",
+    source: "Besta",
+    description: "Uma pessoa unida a uma Besta de Inexistencia."
+  },
+  "Conexão": {
+    family: "Conexão",
+    source: "Conexão",
+    description: "Possui uma Conexão a alguma coisa ou pessoa."
+  },
+};
+
+
+
+
+
 /* ---------------- TIME / DAY ---------------- */
 
 function getBrasiliaDayNumber() {
@@ -127,6 +273,101 @@ function setupUI() {
   gameState.guesses.forEach(g => renderGuessRow(g));
   updateGuessCounter();
 
+const powerBtn = document.getElementById("powerDictionaryBtn");
+const modal = document.getElementById("powerModal");
+const closeBtn = document.getElementById("closePowerModal");
+
+powerBtn.addEventListener("click", () => {
+  buildPowerDictionary();
+  modal.classList.remove("hidden");
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+  modal.addEventListener("click", e => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+
+  const searchInput = document.getElementById("powerSearch");
+
+searchInput.addEventListener("input", () => {
+  buildPowerDictionary(searchInput.value);
+});
+
+  powerBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  buildPowerDictionary();
+  modal.classList.remove("hidden");
+});
+}
+
+function getSourceChain(sourceName) {
+  const chain = [];
+
+  function traverse(node, path) {
+    for (const key in node) {
+      const nextPath = [...path, key];
+      if (key === sourceName) {
+        chain.push(...nextPath);
+        return true;
+      }
+      if (node[key].children && traverse(node[key].children, nextPath)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  traverse(POWER_SOURCES, []);
+  return chain;
+}
+
+function buildPowerDictionary() {
+  const container = document.getElementById("powerList");
+  container.innerHTML = "";
+
+  function renderNode(name, node, depth = 0) {
+    const block = document.createElement("div");
+    block.style.marginLeft = `${depth * 14}px`;
+    block.className = "power-family-block";
+
+    block.innerHTML = `<div class="power-family-title">${name}</div>`;
+    container.appendChild(block);
+
+    // Powers that originate here
+    Object.entries(POWER_DICTIONARY)
+      .filter(([_, p]) => p.source === name)
+      .forEach(([power, p]) => {
+        const item = document.createElement("div");
+        item.className = "power-entry";
+        item.style.marginLeft = `${(depth + 1) * 14}px`;
+
+        item.innerHTML = `
+          <strong>${power}</strong>
+          <span class="power-family-tag">(${p.family})</span>
+          ${
+            p.description
+              ? `<div class="power-description">${p.description}</div>`
+              : ""
+          }
+        `;
+
+        container.appendChild(item);
+      });
+
+    // Children
+    if (node.children) {
+      Object.entries(node.children).forEach(([child, childNode]) =>
+        renderNode(child, childNode, depth + 1)
+      );
+    }
+  }
+
+  Object.entries(POWER_SOURCES).forEach(([name, node]) =>
+    renderNode(name, node)
+  );
 }
 
 /* ---------------- GAME LOGIC ---------------- */
@@ -240,6 +481,10 @@ function getPuzzleNumber() {
   return gameState.day - LAUNCH_DAY + 1;
 }
 
+function getPowerDescription(power) {
+  const key = normalizePower(power);
+  return POWER_DICTIONARY[key] || "Sem descrição disponível.";
+}
 
 /* ---------------- RENDER ---------------- */
 
@@ -285,12 +530,16 @@ const inlineCount =
   `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
   
 const infoIcon = " ⓘ";
+  
+let hoverText = `Poderes Exatos: ${powersInfo.exact}\n`;
 
-const hoverText =
-  `Poderes Exatos: ${powersInfo.exact}\n` +
-  `Famílias de Poderes: ${powersInfo.families}\n` +
-  `(ex: Despertar Laranja, Despertar Roxo → Despertar)\n` +
-  `Total de Poderes do Chute: ${powersInfo.total}`;
+if (powersInfo.families !== powersInfo.exact) {
+  hoverText +=
+    `Famílias de Poderes: ${powersInfo.families}\n` +
+    `(ex: Despertar Laranja, Despertar Roxo → Despertar)\n`;
+}
+
+hoverText += `Total de Poderes do Chute: ${powersInfo.total}`;
 
 
   
@@ -404,5 +653,6 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
