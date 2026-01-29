@@ -713,15 +713,4 @@ function endGame(won) {
   if (!won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
-}
-
-
-
-
-
-
-
-
-
-
-
+}}
