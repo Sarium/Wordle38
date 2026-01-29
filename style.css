@@ -173,22 +173,6 @@ th, td {
   align-items: start;
 }
 
-.tree-row::before {
-  content: "";
-  position: absolute;
-  left: -0.75em;
-  top: 0;
-  height: 100%;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.collapsible[data-expanded="false"]::before {
-  display: none;
-}
-
-
-
 .tree-branch {
   color: #888;
   text-align: right;
@@ -209,7 +193,20 @@ th, td {
   font-weight: 600;
 }
 
-/* Do not draw line for root */
+.tree-row {
+  position: relative;
+}
+
+.tree-row::before {
+  content: "";
+  position: absolute;
+  left: 0.6ch;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
 .depth-0::before {
   display: none;
 }
@@ -235,4 +232,5 @@ th, td {
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
 
