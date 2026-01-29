@@ -324,7 +324,9 @@ function getSourceChain(sourceName) {
   return chain;
 }
 
-function buildPowerDictionary() {
+const term = search.trim().toLowerCase();
+
+function buildPowerDictionary(search = "") {
   const container = document.getElementById("powerList");
   container.innerHTML = "";
   container.className = "power-tree";
@@ -355,7 +357,13 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
     // Group powers by family
     const powersByFamily = {};
     Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
-      if (info.source === name) {
+  const matches =
+    !term ||
+    power.toLowerCase().includes(term) ||
+    info.description?.toLowerCase().includes(term);
+
+  if (info.source === name && matches) {
+
         powersByFamily[info.family] ??= [];
         powersByFamily[info.family].push({ name: power, info });
       }
@@ -381,12 +389,13 @@ function renderRow(label, depth, branch, className = "", collapsible = false) {
         );
 
 if (p.info.description) {
-  const desc = document.createElement("div");
-  desc.className = `tree-description depth-${depth + 2}`;
-  desc.dataset.depth = depth + 2;
-  desc.textContent = p.info.description;
-  container.appendChild(desc);
-}
+  renderRow(
+  p.info.description,
+  depth + 3,
+  "│ ",
+  "tree-description"
+);
+
 
         }
                      );
@@ -708,6 +717,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
