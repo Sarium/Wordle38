@@ -137,29 +137,31 @@ function compareExact(a, b) {
 
 
 function comparePowers(guess, target) {
-  // 🟩 EXACT match (string-level, order independent)
-  const exactMatch =
-    guess.length === target.length &&
-    guess.every(p => target.includes(p));
+  const exactOverlap = guess.filter(p => target.includes(p)).length;
 
-  if (exactMatch) {
-    return "match";
-  }
-
-  // 🟨 FAMILY-based partial match
   const normalizedGuess = guess.map(normalizePower);
   const normalizedTarget = target.map(normalizePower);
 
-  const familyOverlap = normalizedGuess.some(p =>
-    normalizedTarget.includes(p)
-  );
+  const familyOverlap = [...new Set(
+    normalizedGuess.filter(p => normalizedTarget.includes(p))
+  )].length;
 
-  if (familyOverlap) {
-    return "partial";
+  let result = "nope";
+
+  if (exactOverlap === guess.length && guess.length === target.length) {
+    result = "match";
+  } else if (familyOverlap > 0) {
+    result = "partial";
   }
 
-  return "nope";
+  return {
+    result,
+    exact: exactOverlap,
+    families: familyOverlap,
+    total: guess.length
+  };
 }
+
 
 function submitGuess() {
   if (gameState.completed) return;
@@ -192,7 +194,7 @@ const results = [
   compareExact(guessChar.birthplace, dailyCharacter.birthplace),
   compareExact(guessChar.firstAppearance, dailyCharacter.firstAppearance),
   compareExact(guessChar.species, dailyCharacter.species),
-  powersResult
+  powersResult.result
 ];
 
 
@@ -271,12 +273,14 @@ function renderGuessRow(guess) {
     };
   }
 
-      const powersText =
-      guess.powersInfo &&
-      guess.powersInfo.result === "partial"
-      ? `${values.powers.join(", ")} (${guess.powersInfo.count}/${guess.powersInfo.total})`
-      : values.powers.join(", ");
+const hoverText =
+  `Poderes Exatos: ${powersInfo.exact}\n` +
+  `Famílias de Poderes: ${powersInfo.families}\n` +
+  `(ex: Despertar Laranja, Despertar Roxo → Despertar)\n` +
+  `Total de Poderes do Chute: ${powersInfo.total}`;
 
+
+  
   row.innerHTML = `
     <td class="${guess.results[0]}">
       ${guess.name}
@@ -294,9 +298,10 @@ function renderGuessRow(guess) {
       ${values.species}
     </td>
   
-    <td class="${guess.results[4]}">
-      ${powersText}
-    </td>
+<td class="${guess.results[4]}" title="${hoverText}">
+  ${values.powers.join(", ")}
+</td>
+
 `
 
   document.querySelector("#results tbody").appendChild(row);
@@ -383,6 +388,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
