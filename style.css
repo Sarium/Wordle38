@@ -215,7 +215,26 @@ th, td {
   opacity: 0.9;
 }
 
-.tree-description {
+..tree-description {
+  display: grid;
+  grid-template-columns: 2ch auto;
+  column-gap: 0.5ch;
+
+  margin-left: 0; /* important */
+  padding-left: calc(3em + 2ch); /* matches depth-3 */
+
+  font-size: 0.85em;
+  opacity: 0.7;
+
+  max-width: 60ch;
+}
+
+.tree-description::before {
+  content: "│";
+  color: #888;
+  text-align: right;
+}
+ {
   margin-left: calc(2ch + 0.5ch);
   font-size: 0.85em;
   opacity: 0.7;
@@ -232,5 +251,6 @@ th, td {
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
 
 
