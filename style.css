@@ -10,6 +10,19 @@ select, button {
   font-size: 1rem;
 }
 
+.power-btn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  font-size: 0.85em;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.power-btn:hover {
+  opacity: 1;
+}
+
 table {
   margin: 20px auto;
   border-collapse: collapse;
@@ -71,3 +84,74 @@ th, td {
   opacity: 0.85;
 }
 
+.power-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.power-modal.hidden {
+  display: none;
+}
+
+.power-modal-content {
+  background: #111;
+  padding: 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+  width: 320px;
+  border-radius: 6px;
+}
+
+.power-entry {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.power-family {
+  opacity: 0.7;
+  font-size: 0.85em;
+}
+
+.power-family-block {
+  margin-bottom: 14px;
+}
+
+.power-family-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.power-family-list {
+  margin: 0;
+  padding-left: 16px;
+  opacity: 0.9;
+  font-size: 0.9em;
+}
+
+.power-family-list li {
+  list-style: disc;
+}
+
+.power-search {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 12px;
+  font-size: 0.9em;
+}
+
+.power-description {
+  font-size: 0.8em;
+  opacity: 0.75;
+  margin-left: 4px;
+}
+
+.power-family-tag {
+  font-size: 0.8em;
+  opacity: 0.7;
+  margin-left: 4px;
+}
