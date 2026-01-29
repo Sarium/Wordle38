@@ -262,16 +262,30 @@ function renderGuessRow(guess) {
   let powersInfo = guess.powersInfo;
 
   if (!powersInfo) {
-    const overlap = values.powers.filter(p =>
-      dailyCharacter.powers.includes(p)
-    );
+  const exactOverlap = values.powers.filter(p =>
+    dailyCharacter.powers.includes(p)
+  ).length;
 
-    powersInfo = {
-      result: guess.results[3],
-      count: overlap.length,
-      total: dailyCharacter.powers.length
-    };
-  }
+  const normalizedGuess = values.powers.map(normalizePower);
+  const normalizedTarget = dailyCharacter.powers.map(normalizePower);
+
+    const inlineCount =
+  `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
+
+  const familyOverlap = [...new Set(
+    normalizedGuess.filter(p => normalizedTarget.includes(p))
+  )].length;
+
+const infoIcon = " ⓘ";
+    
+  powersInfo = {
+    result: guess.results[4],
+    exact: exactOverlap,
+    families: familyOverlap,
+    total: values.powers.length
+  };
+}
+
 
 const hoverText =
   `Poderes Exatos: ${powersInfo.exact}\n` +
@@ -299,8 +313,9 @@ const hoverText =
     </td>
   
 <td class="${guess.results[4]}" title="${hoverText}">
-  ${values.powers.join(", ")}
+  ${values.powers.join(", ")} ${inlineCount}${infoIcon}
 </td>
+
 
 `
 
@@ -388,6 +403,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
