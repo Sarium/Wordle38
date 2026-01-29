@@ -169,31 +169,29 @@ box-shadow:
   font-family: monospace;
   font-size: 0.95rem;
   line-height: 1.6;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 6px;
   background: rgba(255,255,255,0.02);
 }
 
 .tree-row {
   display: grid;
-  grid-template-columns: 3ch auto;
+  grid-template-columns: auto 1fr;
   column-gap: 0.75ch;
   align-items: start;
 }
 
 .tree-branch {
-  color: #888;
-  text-align: right;
-  user-select: none;
   white-space: pre;
+  color: #888;
+  user-select: none;
 }
 
 .tree-label {
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
-  max-width: 100%;
 }
 
 .tree-family {
@@ -205,8 +203,8 @@ box-shadow:
 }
 
 .tree-description {
-  opacity: 0.7;
   font-size: 0.85em;
+  opacity: 0.7;
 }
 
 .collapsible > .tree-label::before {
@@ -219,4 +217,5 @@ box-shadow:
 .collapsible[data-expanded="false"] > .tree-label::before {
   content: "▸ ";
 }
+
 
