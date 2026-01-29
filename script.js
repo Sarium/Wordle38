@@ -573,8 +573,15 @@ function renderGuessRow(guess) {
   };
 }
 
-const inlineCount =
-  `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
+if (powersInfo.families !== powersInfo.exact) {
+  const inlineCount =
+    `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
+}
+else
+  const inlineCount =
+    `${powersInfo.exact}/${powersInfo.total}`;
+
+  
   
 const infoIcon = " ⓘ";
   
@@ -700,6 +707,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
