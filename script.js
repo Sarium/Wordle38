@@ -389,7 +389,7 @@ if (p.info.description) {
 }
 
         }
-      });
+                     );
     });
 
     if (node.children) {
@@ -708,6 +708,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
