@@ -391,7 +391,7 @@ Object.entries(POWER_DICTIONARY).forEach(([power, info]) => {
         );
       }
     });
-  });
+  };
   
 if (node.children && Object.keys(node.children).length > 0) {
   Object.entries(node.children).forEach(([child, childNode]) => {
@@ -706,6 +706,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
