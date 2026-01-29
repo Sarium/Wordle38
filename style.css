@@ -56,3 +56,11 @@ th, td {
   background: #333;
 }
 
+.power-count {
+  margin-left: 8px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+
+
