@@ -269,14 +269,9 @@ function renderGuessRow(guess) {
   const normalizedGuess = values.powers.map(normalizePower);
   const normalizedTarget = dailyCharacter.powers.map(normalizePower);
 
-    const inlineCount =
-  `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
-
   const familyOverlap = [...new Set(
     normalizedGuess.filter(p => normalizedTarget.includes(p))
   )].length;
-
-const infoIcon = " ⓘ";
     
   powersInfo = {
     result: guess.results[4],
@@ -286,6 +281,10 @@ const infoIcon = " ⓘ";
   };
 }
 
+const inlineCount =
+  `${powersInfo.exact}(${powersInfo.families})/${powersInfo.total}`;
+  
+const infoIcon = " ⓘ";
 
 const hoverText =
   `Poderes Exatos: ${powersInfo.exact}\n` +
@@ -403,18 +402,3 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
