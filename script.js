@@ -425,6 +425,7 @@ document.addEventListener("click", e => {
     next = next.nextElementSibling;
   }
 });
+}
 
 
 
@@ -711,6 +712,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
