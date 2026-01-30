@@ -196,10 +196,40 @@ function initGame() {
   if (isAdminReset()) {
   localStorage.removeItem(STORAGE_KEY);
 }
-  const today = getBrasiliaDayNumber();
-  dailyCharacter = characters[today % characters.length];
+// FNV-1a hash function
+function fnv1aHash(str) {
+  let hash = 2166136261; // FNV offset basis
+  for (let i = 0; i < str.length; i++) {
+    hash ^= str.charCodeAt(i);
+    hash = (hash >>> 0) * 16777619 >>> 0; // multiply by FNV prime
+  }
+  return hash >>> 0; // ensure unsigned 32-bit integer
+}
 
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+// Seeded pseudo-random generator based on a number
+function seededRandom(seed) {
+  // Xorshift algorithm
+  let x = seed >>> 0;
+  x ^= x << 13;
+  x ^= x >>> 17;
+  x ^= x << 5;
+  return (x >>> 0) / 0xFFFFFFFF; // return number between 0 and 1
+}
+
+// Get the "daily number" for today
+const today = getBrasiliaDayNumber(); // your function returning an integer
+
+// Generate a robust seed string (e.g., include a salt if you want)
+const seedString = `dailyCharacter-${today}`;
+
+// Hash the seed string to get a numeric seed
+const seed = fnv1aHash(seedString);
+
+// Pick the daily character
+const dailyCharacter = characters[Math.floor(seededRandom(seed) * characters.length)];
+
+console.log(dailyCharacter);
+
 
   if (saved && saved.day === today) {
     gameState = saved;
@@ -707,6 +737,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
