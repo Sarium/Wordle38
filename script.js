@@ -227,7 +227,7 @@ const seedString = `dailyCharacter-${today}`;
 const seed = fnv1aHash(seedString);
 
 // Pick the daily character
-const dailyCharacter = characters[Math.floor(seededRandom(seed) * characters.length)];
+dailyCharacter = characters[Math.floor(seededRandom(seed) * characters.length)];
 
 console.log(dailyCharacter);
   
@@ -739,6 +739,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
