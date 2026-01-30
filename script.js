@@ -24,7 +24,7 @@ let gameState = {
 function normalizePower(power) {
   return power
     .toLowerCase()
-    .replace(/\s+(laranja|roxo|original|de pecado|do som| da memória)$/i, "")
+    .replace(/\s+(laranja|roxo|original|de pecado|do som|da memória|parcialmente)$/i, "")
     .trim();
 }
 
@@ -737,6 +737,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
