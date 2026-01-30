@@ -199,7 +199,7 @@ function initGame() {
   
 // FNV-1a hash function
 function fnv1aHash(str) {
-  let hash = 2166136261; // FNV offset basis
+  let hash = 2166136265; // FNV offset basis
   for (let i = 0; i < str.length; i++) {
     hash ^= str.charCodeAt(i);
     hash = (hash >>> 0) * 16777619 >>> 0; // multiply by FNV prime
@@ -737,6 +737,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
