@@ -196,6 +196,7 @@ function initGame() {
   if (isAdminReset()) {
   localStorage.removeItem(STORAGE_KEY);
 }
+  
 // FNV-1a hash function
 function fnv1aHash(str) {
   let hash = 2166136261; // FNV offset basis
@@ -227,6 +228,8 @@ const seed = fnv1aHash(seedString);
 
 // Pick the daily character
 const dailyCharacter = characters[Math.floor(seededRandom(seed) * characters.length)];
+
+console.log(dailyCharacter);
   
 const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
