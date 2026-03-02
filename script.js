@@ -683,13 +683,32 @@ let text = `Wordle38 #${getPuzzleNumber()}\n\n`;
 /* ---------------- STATS ---------------- */
 
 function updateStreak(won) {
+  const today = getBrasiliaDayNumber();
+
   const stats = JSON.parse(localStorage.getItem("Wordle38-stats")) || {
     streak: 0,
-    maxStreak: 0
+    maxStreak: 0,
+    lastPlayedDay: null
   };
 
-  stats.streak = won ? stats.streak + 1 : 0;
-  stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
+  if (won) {
+    if (stats.lastPlayedDay === today - 1) {
+      // Consecutive win
+      stats.streak += 1;
+    } else if (stats.lastPlayedDay === today) {
+      // Already counted today — do nothing
+      return;
+    } else {
+      // Not consecutive → reset to 1
+      stats.streak = 1;
+    }
+
+    stats.maxStreak = Math.max(stats.maxStreak, stats.streak);
+  } else {
+    stats.streak = 0;
+  }
+
+  stats.lastPlayedDay = today;
 
   localStorage.setItem("Wordle38-stats", JSON.stringify(stats));
 }
@@ -737,6 +756,7 @@ function endGame(won) {
     alert(`Acabaram seus chutes! O personagem de hoje foi: ${dailyCharacter.name}`);
   }
 }
+
 
 
 
