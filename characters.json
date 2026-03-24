@@ -172,7 +172,7 @@
     "birthplace": "Suol",
     "firstAppearance": "Engenheiro dos Homens",
     "species": "Humano",
-    "powers": ["Visão do Futuro", "Controle de Energia", "Retornado"]
+    "powers": ["Puxador", "Controle de Energia", "Retornado"]
   },
   {
     "name": "He'to",
@@ -340,7 +340,7 @@
     "birthplace": "Suol",
     "firstAppearance": "Engenheiro dos Homens",
     "species": "Humano",
-    "powers": ["Despertar", "Sexto Sentido", "Visão do Futuro", "Runas"]
+    "powers": ["Despertar", "Sexto Sentido", "Puxador", "Runas"]
   },
   {
     "name": "Relia",
@@ -418,5 +418,33 @@
     "firstAppearance": "Deus das Rosas",
     "species": "Híbrido",
     "powers": ["Despertar", "Contrato"]
+  },
+  {
+    "name": "Salus",
+    "birthplace": "Delphi",
+    "firstAppearance": "Homem na Parede",
+    "species": "Humano",
+    "powers": ["Puxador"]
+  },
+    {
+    "name": "Midai",
+    "birthplace": "Abismo",
+    "firstAppearance": "Homem na Parede",
+    "species": "Demonio",
+    "powers": ["Carniça"]
+  },
+  {
+    "name": "Otibó",
+    "birthplace": "Heimsendir",
+    "firstAppearance": "Homem na Parede",
+    "species": "Humano",
+    "powers": ["Nenhum"]
+  },
+  {
+    "name": "Estalo",
+    "birthplace": "Megabesta",
+    "firstAppearance": "Homem na Parede",
+    "species": "Híbrido",
+    "powers": ["Bestialização", "Gnose", "Conexão"]
   }
 ]
